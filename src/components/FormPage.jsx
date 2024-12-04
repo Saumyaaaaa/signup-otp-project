@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { Form, Input, Button, Select, Upload, Typography, Row, Col } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+const { Title, Paragraph } = Typography;
+const { Option } = Select;
 
 const FormPage = () => {
   const [formData, setFormData] = useState({
@@ -18,95 +23,83 @@ const FormPage = () => {
     companyLogo: null,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (name) => (value) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({ ...formData, [name]: files[0] });
+  const handleFileChange = (name) => (file) => {
+    setFormData({ ...formData, [name]: file });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+  const handleSubmit = (values) => {
+    console.log('Form submitted:', values);
   };
 
   return (
-    <div>
-      <h1>Tell us more about your business</h1>
-      <p>Your info is like the Wi-Fi password—totally crucial for keeping things running, impressing the money folks, and making sure you get top-notch service without any buffering!</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Legal Name *
-          <input type="text" name="legalName" value={formData.legalName} onChange={handleChange} required />
-        </label>
-        <label>
-          Doing Business As *
-          <input type="text" name="doingBusinessAs" value={formData.doingBusinessAs} onChange={handleChange} required />
-        </label>
-        <label>
-          Company Registration Number *
-          <input type="text" name="companyRegNumber" value={formData.companyRegNumber} onChange={handleChange} required />
-        </label>
-        <label>
-          Tax Registration Number
-          <input type="text" name="taxRegNumber" value={formData.taxRegNumber} onChange={handleChange} />
-        </label>
-        <label>
-          Website URL *
-          <input type="url" name="websiteURL" value={formData.websiteURL} onChange={handleChange} required />
-        </label>
-        <label>
-          Industry Name *
-          <input type="text" name="industryName" value={formData.industryName} onChange={handleChange} required />
-        </label>
-        <label>
-          One Random Dropdown? *
-          <select name="dropdownSelection" value={formData.dropdownSelection} onChange={handleChange} required>
-            <option value="">Select an option</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
-        </label>
-        <label>
-          Account Usage Intent *
-          <input type="text" name="accountUsageIntent" value={formData.accountUsageIntent} onChange={handleChange} required />
-        </label>
-        <label>
-          Random Count Per Month *
-          <input type="number" name="randomCountPerMonth" value={formData.randomCountPerMonth} onChange={handleChange} required />
-        </label>
-        <label>
-          Expected Total Visits in this Page *
-          <input type="number" name="expectedVisits" value={formData.expectedVisits} onChange={handleChange} required />
-        </label>
-        <label>
-          Purpose of Using Fake Form *
-          <textarea name="purposeDescription" value={formData.purposeDescription} onChange={handleChange} required />
-        </label>
-        <label>
-          Contact Email *
-          <input type="email" name="contactEmail" value={formData.contactEmail} onChange={handleChange} required />
-        </label>
-        <label>
-          Certification of Incorporation *
-          <input type="file" name="incorporationCertificate" onChange={handleFileChange} required />
-          <p>Click to upload or drag and drop (Max file size: 50 MB)</p>
-        </label>
-        <label>
-          Company Logo *
-          <input type="file" name="companyLogo" onChange={handleFileChange} required />
-          <p>Click to upload or drag and drop (Max file size: 50 MB)</p>
-        </label>
-        <div>
-          <button type="button" onClick={() => console.log('Go to Previous Step')}>Previous</button>
-          <button type="submit">Next</button>
-        </div>
-      </form>
+    <div style={{ padding: '20px' }}>
+      <Title level={2}>Tell us more about your business</Title>
+      <Paragraph>Your info is like the Wi-Fi password—totally crucial for keeping things running, impressing the money folks, and making sure you get top-notch service without any buffering!</Paragraph>
+      <Form layout="vertical" onFinish={handleSubmit}>
+        <Form.Item label="Legal Name *" required>
+          <Input value={formData.legalName} onChange={(e) => handleChange('legalName')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Doing Business As *" required>
+          <Input value={formData.doingBusinessAs} onChange={(e) => handleChange('doingBusinessAs')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Company Registration Number *" required>
+          <Input value={formData.companyRegNumber} onChange={(e) => handleChange('companyRegNumber')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Tax Registration Number">
+          <Input value={formData.taxRegNumber} onChange={(e) => handleChange('taxRegNumber')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Website URL *" required>
+          <Input value={formData.websiteURL} onChange={(e) => handleChange('websiteURL')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Industry Name *" required>
+          <Input value={formData.industryName} onChange={(e) => handleChange('industryName')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="One Random Dropdown? *" required>
+          <Select value={formData.dropdownSelection} onChange={handleChange('dropdownSelection')}>
+            <Option value="">Select an option</Option>
+            <Option value="option1">Option 1</Option>
+            <Option value="option2">Option 2</Option>
+            <Option value="option3">Option 3</Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="Account Usage Intent *" required>
+          <Input value={formData.accountUsageIntent} onChange={(e) => handleChange('accountUsageIntent')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Random Count Per Month *" required>
+          <Input type="number" value={formData.randomCountPerMonth} onChange={(e) => handleChange('randomCountPerMonth')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Expected Total Visits in this Page *" required>
+          <Input type="number" value={formData.expectedVisits} onChange={(e) => handleChange('expectedVisits')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Purpose of Using Fake Form *" required>
+          <Input.TextArea value={formData.purposeDescription} onChange={(e) => handleChange('purposeDescription')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Contact Email *" required>
+          <Input type="email" value={formData.contactEmail} onChange={(e) => handleChange('contactEmail')(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Certification of Incorporation *" required>
+          <Upload beforeUpload={() => false} onChange={(info) => handleFileChange('incorporationCertificate')(info.file)}>
+            <Button icon={<UploadOutlined />}>Click to upload or drag and drop</Button>
+          </Upload>
+        </Form.Item>
+        <Form.Item label="Company Logo *" required>
+          <Upload beforeUpload={() => false} onChange={(info) => handleFileChange('companyLogo')(info.file)}>
+            <Button icon={<UploadOutlined />}>Click to upload or drag and drop</Button>
+          </Upload>
+        </Form.Item>
+        <Row justify="space-between">
+          <Col>
+            <Button type="default" onClick={() => console.log('Go to Previous Step')}>Previous</Button>
+          </Col>
+          <Col>
+            <Button type="primary" htmlType="submit">Next</Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };
