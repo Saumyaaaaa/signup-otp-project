@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button, Input, Typography } from 'antd';
+
+const { Title } = Typography;
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -14,16 +17,26 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>Sign-Up Page</h1>
-      <input
-        type="text"
-        placeholder="Enter your phone number or email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button onClick={handleSendOTP}>Send OTP</button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+        <Title level={2} className="text-center mb-6">Sign Up</Title>
+        <Input
+          type="text"
+          placeholder="Enter your phone number or email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="mb-4"
+        />
+        <Button 
+          type="primary" 
+          onClick={handleSendOTP} 
+          className="w-full"
+        >
+          Send OTP
+        </Button>
+      </div>
     </div>
   );
 };
+
 export default SignUp;
