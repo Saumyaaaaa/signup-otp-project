@@ -4,6 +4,9 @@ import { Input, Button } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import logo from '../assets/logo.svg';
+import singaporeFlag from '../assets/singapore.svg'; // Import Singapore SVG
+import hongKongFlag from '../assets/hongkong.svg'; // Import Hong Kong SVG
+import usaFlag from '../assets/usa.svg'; // Import USA SVG
 
 const OTPVerification = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -26,7 +29,6 @@ const OTPVerification = () => {
     const enteredOtp = otp.join("");
     if (enteredOtp.length === 6) {
       console.log("Verifying OTP:", enteredOtp);
-      // Navigate to FormPage on successful verification
       navigate('/form'); // Change this to the correct path for FormPage
     } else {
       alert("Please enter a valid 6-digit OTP");
@@ -54,9 +56,9 @@ const OTPVerification = () => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-white">
-      <div className="flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden">
-        {/* Left Section */}
-        <div className="flex-1 bg-gradient-to-br from-purple-500 to-orange-500 p-6 flex flex-col justify-center">
+      <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden">
+        {/* Left Section with Gradient Background for Layout Cards */}
+        <div className="flex-1 p-6 flex flex-col justify-center bg-gradient-to-br from-purple-500 to-orange-500">
           <Button
             type="link"
             className="text-white mb-6"
@@ -65,31 +67,41 @@ const OTPVerification = () => {
             Back
           </Button>
           <h1 className="text-4xl font-bold mb-6 text-white">Layout Cards</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Cards */}
-            {[ /* Card data */ ].map((item, index) => (
-              <div
-                key={index}
-                className="p-4 bg-white bg-opacity-10 rounded-lg shadow-lg text-white"
-              >
-                <div className="text-2xl">{item.flag}</div>
-                <h2 className="text-lg font-semibold mt-2">{item.country}</h2>
-                <p className="text-sm opacity-80">{item.type}</p>
-                <p className="text-sm mt-4">{item.details}</p>
+          <div className="grid grid-cols-1 gap-4">
+            {/* Singapore Card */}
+            <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+              <div className="flex items-center">
+                <img src={singaporeFlag} alt="Singapore flag" className="w-8 h-8 mr-2" />
+                <h2 className="text-lg font-semibold">Singapore</h2>
               </div>
-            ))}
+              <p className="text-sm opacity-80">Head Office</p>
+              <p className="text-sm mt-2">XYZ Pvt. Ltd.<br />Road to nowhere, 06-404, 500 Internal Error</p>
+            </div>
+            {/* Hong Kong and USA Cards in a Row */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+                <div className="flex items-center">
+                  <img src={hongKongFlag} alt="Hong Kong flag" className="w-8 h-8 mr-2" />
+                  <h2 className="text-lg font-semibold">Hong Kong</h2>
+                </div>
+                <p className="text-sm opacity-80">Branches</p>
+                <p className="text-sm mt-2">XYZ Pte. Ltd.<br />The Infinite Loop Office, 404 Timeout Plaza</p>
+              </div>
+              <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+                <div className="flex items-center">
+                  <img src={usaFlag} alt="USA flag" className="w-8 h-8 mr-2" />
+                  <h2 className="text-lg font-semibold">USA</h2>
+                </div>
+                <p className="text-sm opacity-80">Branches</p>
+                <p className="text-sm mt-2">XYZ Inc.<br />Nulltown, Buglandia, 500 0xDEADBEE</p>
+              </div>
+            </div>
           </div>
         </div>
         {/* Right Section */}
         <div className="flex-1 bg-white p-10 flex flex-col justify-center">
-          <img
-            src={logo}
-            alt="Logo"
-            className="mx-auto mb-4"
-          />
-          <h2 className="text-2xl font-bold text-center mb-2">
-            Verify your Email
-          </h2>
+          <img src={logo} alt="Logo" className="mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-center mb-2">Verify your Email</h2>
           <p className="text-sm text-center mb-8">
             Please enter the 6 digit code we just sent to{" "}
             <span className="font-bold">s*********a@xyz.com</span>
@@ -105,10 +117,7 @@ const OTPVerification = () => {
                   value={digit}
                   onChange={(e) => handleChange(e.target.value, index)}
                 />
-                {/* Add dash after the third input */}
-                {index === 2 && (
-                  <span className="text-lg font-bold">-</span>
-                )}
+                {index === 2 && <span className="text-lg font-bold">-</span>}
               </React.Fragment>
             ))}
           </div>
@@ -124,33 +133,19 @@ const OTPVerification = () => {
           <div className="text-center text-sm mt-4">
             {isTimerActive ? (
               <p>
-                Wait {Math.floor(timer / 60)}:{("0" + (timer % 60)).slice(-2)}{" "}
-                seconds before requesting a new code.
+                Wait {Math.floor(timer / 60)}:{("0" + (timer % 60)).slice(-2)} seconds before requesting a new code.
               </p>
             ) : (
-              <Button
-                type="link"
-                className="text-red-500"
-                onClick={handleRequestNewCode}
-              >
+              <Button type="link" className="text-red-500" onClick={handleRequestNewCode}>
                 Request New Code
               </Button>
             )}
           </div>
           <p className="text-xs text-center mt-8 text-gray-500">
             By continuing, you’re agreeing to Nobody's{" "}
-            <a href="#" className="text-blue-500">
-              Terms of Service
-            </a>
-            ,{" "}
-            <a href="#" className="text-blue-500">
-              Privacy Policy
-            </a>
-            , and{" "}
-            <a href="#" className="text-blue-500">
-              Cookie Policy
-            </a>
-            .
+            <a href="#" className="text-blue-500">Terms of Service</a>,{" "}
+            <a href="#" className="text-blue-500">Privacy Policy</a>, and{" "}
+            <a href="#" className="text-blue-500">Cookie Policy</a>.
           </p>
         </div>
       </div>
