@@ -32,12 +32,15 @@ const FormPage = () => {
     console.log("Form submitted:", { ...formData, ...values });
   };
 
- const requiredLabel = (text) => (
-    <span className="flex justify-between items-center">
+const requiredLabel = (text, required = false) => (
+    <span className="flex items-center">
       <span>{text}</span>
-      <span style={{ color: 'red', marginLeft: '5px' }}>*</span>
+      {required && <span className="text-red-500 ml-1">*</span>}
     </span>
   );
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center items-center px-4">
@@ -59,6 +62,7 @@ const FormPage = () => {
     >
       <Input
         value={formData.legalName}
+         placeholder="Legal Name"
         onChange={(e) => handleChange("legalName")(e.target.value)}
       />
     </Form.Item>
@@ -69,6 +73,7 @@ const FormPage = () => {
     rules={[{ required: true }]}
     >
       <Input
+         placeholder="Doing Business As"
         value={formData.doingBusinessAs}
         onChange={(e) => handleChange("doingBusinessAs")(e.target.value)}
       />
@@ -82,6 +87,7 @@ const FormPage = () => {
     >
       <Input
         value={formData.companyRegNumber}
+           placeholder="Company Registration Number"
         onChange={(e) => handleChange("companyRegNumber")(e.target.value)}
       />
     </Form.Item>
@@ -93,6 +99,7 @@ const FormPage = () => {
 
     >
       <Input
+         placeholder="Random Registration Number"
         value={formData.randomRegNumber}
         onChange={(e) => handleChange("randomRegNumber")(e.target.value)}
       />
@@ -105,6 +112,7 @@ const FormPage = () => {
       rules={[{ required: true }]}
     >
       <Input
+         placeholder="Website URL"
         value={formData.websiteURL}
         onChange={(e) => handleChange("websiteURL")(e.target.value)}
       />
@@ -117,6 +125,7 @@ const FormPage = () => {
       rules={[{ required: true }]}
     >
       <Input
+         placeholder="Industry Name"
         value={formData.industryName}
         onChange={(e) => handleChange("industryName")(e.target.value)}
       />
