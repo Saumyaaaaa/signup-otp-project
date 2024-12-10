@@ -57,7 +57,7 @@ const OTPVerification = () => {
     <div className="flex items-center justify-center h-screen bg-white">
       <div className="relative flex flex-col md:flex-row w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Left Section */}
-        <div className="flex-1 p-6 flex flex-col justify-center bg-gradient-to-br from-purple-500 to-orange-500">
+        <div className="flex-1 p-6 flex flex-col justify-center bg-gradient-to-br from-blue-900 to-orange-500">
           <Button
             type="link"
             className="text-white mb-6"
@@ -68,46 +68,53 @@ const OTPVerification = () => {
           <h1 className="text-4xl font-bold mb-6 text-white">Layout Cards</h1>
           <div className="grid grid-cols-1 gap-4">
             {/* Singapore Card */}
-            <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+            <div className="card h-40 p-4 rounded-lg shadow-lg flex flex-col justify-between">
               <div className="flex items-center">
                 <img
                   src={singaporeFlag}
                   alt="Singapore flag"
                   className="w-8 h-8 mr-2"
                 />
-                <h2 className="text-lg font-semibold">Singapore</h2>
+                <h2 className="country-name text-white">Singapore</h2>
               </div>
-              <p className="text-sm opacity-80">Head Office</p>
-              <p className="text-sm mt-2">
+              <p className="country-info text-white">Head Office</p>
+              <p className="text-sm mt-2 text-white">
                 XYZ Pvt. Ltd.
                 <br />
                 Road to nowhere, 06-404, 500 Internal Error
               </p>
             </div>
+
+            {/* Hong Kong & USA Cards */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+              <div className="card h-40 p-4 rounded-lg shadow-lg flex flex-col justify-between">
                 <div className="flex items-center">
                   <img
                     src={hongKongFlag}
                     alt="Hong Kong flag"
                     className="w-8 h-8 mr-2"
                   />
-                  <h2 className="text-lg font-semibold">Hong Kong</h2>
+                  <h2 className="country-name text-white" >Hong Kong</h2>
                 </div>
-                <p className="text-sm opacity-80">Branches</p>
-                <p className="text-sm mt-2">
+                <p className="country-info text-white">Branches</p>
+                <p className="text-sm mt-2 text-white">
                   XYZ Pte. Ltd.
                   <br />
                   The Infinite Loop Office, 404 Timeout Plaza
                 </p>
               </div>
-              <div className="h-40 p-4 bg-white bg-opacity-80 rounded-lg shadow-lg backdrop-blur-md flex flex-col justify-between">
+
+              <div className="card h-40 p-4 rounded-lg shadow-lg flex flex-col justify-between">
                 <div className="flex items-center">
-                  <img src={usaFlag} alt="USA flag" className="w-8 h-8 mr-2" />
-                  <h2 className="text-lg font-semibold">USA</h2>
+                  <img
+                    src={usaFlag}
+                    alt="USA flag"
+                    className="w-8 h-8 mr-2"
+                  />
+                  <h2 className="country-name text-white">USA</h2>
                 </div>
-                <p className="text-sm opacity-80">Branches</p>
-                <p className="text-sm mt-2">
+                <p className="country-info text-white">Branches</p>
+                <p className="text-sm mt-2 text-white">
                   XYZ Inc.
                   <br />
                   Nulltown, Buglandia, 500 0xDEADBEE
@@ -116,6 +123,7 @@ const OTPVerification = () => {
             </div>
           </div>
         </div>
+
         {/* Right Section */}
         <div className="flex-1 bg-white p-10 flex flex-col justify-center relative">
           <img
