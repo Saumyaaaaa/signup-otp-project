@@ -230,7 +230,7 @@ const requiredLabel = (text, required = false) => (
       name="fakeFormPurpose"
       rules={[{ required: true }]}
     >
-      <Input
+      <Input.TextArea
         placeholder="Ek description toh banta hai"
         value={formData.fakeFormPurpose}
         onChange={(e) => handleChange("fakeFormPurpose")(e.target.value)}
@@ -241,7 +241,7 @@ const requiredLabel = (text, required = false) => (
     <Form.Item label="Ek Description toh banta hai"
     name="Ek Description toh banta hai"
       rules={[{ required: true }]}>
-      <Input
+      <Input.TextArea
         placeholder="Product Description"
         value={formData.productDescription}
         onChange={(e) => handleChange("productDescription")(e.target.value)}
