@@ -10,6 +10,16 @@ This is a React-based application designed to collect business information. It a
 - **Responsive Design**: The form is responsive and adjusts to different screen sizes.
 - **Validation**: Required fields are validated, and appropriate error messages are displayed.
 - **Icons**: Uses icons from `react-icons` for visual enhancement.
+
+**OTP Verification**
+Users receive a 6-digit OTP (One-Time Password) for authentication.
+For testing purposes, the OTP is displayed in the browser console.
+
+**Responsive Design**
+Fully responsive, adjusting seamlessly to different screen sizes.
+
+**Validation**
+Includes validation for required fields with error messages.
   
 ## Technologies Used
 
